@@ -7,3 +7,12 @@ body {
     color: var(--text);
     background-color: var(--bg);
 }
+
+iframe {
+    border-radius: 10px;
+    border-style: none;
+    width: 820px;
+    height: 547px;
+    margin: 0 auto;
+    display: block;
+}
