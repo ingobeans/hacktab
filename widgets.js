@@ -7,5 +7,5 @@ function format(str, values) {
 }
 
 for (let [k, v] of Object.entries(widgets)) {
-    document.body.innerHTML += format(v, { text: "<br><br>hello world" });
+    document.body.innerHTML += format(v["html"], { text: "<br><br>hello world" });
 }
