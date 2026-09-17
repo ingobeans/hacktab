@@ -5,7 +5,7 @@ let widgetsContainer = document.getElementById("widgets-container");
 let addWidgetSelect = document.getElementById("add-widget-select");
 
 function format(str, values, undefinedLookup = (key) => { return `<undefined ${key}>` }) {
-    return str.replace(/{(.+)}/g, function (match, index) {
+    return str.replace(/{([a-zA-Z]+)}/g, function (match, index) {
         return typeof values[index] !== 'undefined' ? values[index] : undefinedLookup(index);
     });
 }
@@ -59,8 +59,13 @@ function reloadWidget(key) {
 }
 
 function updateSettingInput(element, key, dontReload = false) {
+    console.log("updateSettingInput");
     let setting = element.getAttribute("linkedsetting");
     let value = element.value;
+    if (element.getAttribute("type") == "checkbox") {
+        value = element.checked;
+    }
+
     localStorage.setItem(key + "/" + setting, value);
 
     if (!dontReload)
@@ -119,6 +124,9 @@ function showWidgetSetting(key) {
             // apply stored value if it exists
             let storedValue = localStorage.getItem(key + "/" + child.getAttribute("linkedsetting"));
             if (storedValue) {
+                if (child.getAttribute("type") == "checkbox") {
+                    child.checked = storedValue == "true";
+                }
                 child.value = storedValue;
             }
         }

@@ -27,6 +27,10 @@ select {
     width: 100%;
 }
 
+input[type=checkbox] {
+    width: 2lh;
+}
+
 input:focus {
     outline: none;
 }
