@@ -18,6 +18,20 @@ function formatWidget(str, values, widgetKey) {
     return format(str, values, findDefaultSettingValue.bind(null, widgetKey))
 }
 
+// Source - https://stackoverflow.com/a/5306832
+// Posted by user236139, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-09-17, License - CC BY-SA 3.0
+function arrayMove(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr;
+};
+
 let defaultSettings = {};
 
 function findDefaultSettingValue(widgetKey, settingKey) {
@@ -72,6 +86,10 @@ function moveWidgetButton(element) {
 
     let widget = document.getElementById(key + "-widget");
     widgetsContainer.insertBefore(widget, directionUp ? widget.previousSibling : widget.nextSibling.nextSibling);
+
+    let index = enabledWidgets.indexOf(key);
+    arrayMove(enabledWidgets, index, index + (directionUp ? -1 : 1));
+    localStorage.setItem("enabled", enabledWidgets);
 }
 
 let settingTemplate = `
