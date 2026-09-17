@@ -62,11 +62,20 @@ function deleteWidgetButton(element) {
     document.getElementById(key + "-setting").remove();
 }
 
+function moveWidgetButton(element) {
+    let parent = element.parentElement;
+    let key = parent.getAttribute("key");
+    let directionUp = element.getAttribute("direction") == "up";
+
+    let setting = document.getElementById(key + "-setting");
+    widgetSettingsContainer.insertBefore(setting, directionUp ? setting.previousSibling : setting.nextSibling.nextSibling);
+}
+
 let settingTemplate = `
 <h2>{key}</h2>
 <button onclick=deleteWidgetButton(this)>X</button>
-<button direction=up>↑</button>
-<button action=down>↓</button>
+<button onclick=moveWidgetButton(this) direction=up>↑</button>
+<button onclick=moveWidgetButton(this) direction=down>↓</button>
 
 <br><hr>
 `;
