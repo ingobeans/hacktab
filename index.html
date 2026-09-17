@@ -8,12 +8,15 @@
 </head>
 
 <body>
-    <script src="script.js" defer></script>
     <button id="settings-btn" onclick="openSettings()">Settings</button>
     <div id="sidebar-container" style="display: none;">
         <div id="screen-dim" onclick="closeSettings()"></div>
         <div id="sidebar"></div>
     </div>
+
+    <script src="gen/widgetsBuild.js"></script>
+    <script src="widgets.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
