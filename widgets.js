@@ -6,7 +6,7 @@ let addWidgetSelect = document.getElementById("add-widget-select");
 
 function format(str, values, undefinedLookup = (key) => { return `<undefined ${key}>` }) {
     return str.replace(/{([a-zA-Z]+)}/g, function (match, index) {
-        return typeof values[index] !== 'undefined' ? values[index] : undefinedLookup(index);
+        return (typeof values[index] !== 'undefined' ? values[index] : undefinedLookup(index)).replaceAll("\n", "<br>");
     });
 }
 
@@ -15,7 +15,7 @@ function capitalizeFirst(text = "") {
 }
 
 function formatWidget(str, values, widgetKey) {
-    return format(str, values, findDefaultSettingValue.bind(null, widgetKey))
+    return format(str, values, findDefaultSettingValue.bind(null, widgetKey));
 }
 
 // Source - https://stackoverflow.com/a/5306832

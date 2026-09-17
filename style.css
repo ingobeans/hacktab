@@ -18,6 +18,7 @@ label {
 }
 
 input,
+textarea,
 select {
     color: inherit;
     background-color: var(--menu-bg);
@@ -31,7 +32,12 @@ input[type=checkbox] {
     width: 2lh;
 }
 
-input:focus {
+textarea {
+    max-width: 100%;
+}
+
+input:focus,
+textarea:focus {
     outline: none;
 }
 
