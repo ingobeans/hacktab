@@ -52,6 +52,7 @@ for (let [k, v] of Object.entries(widgets)) {
     let settingsElement = document.createElement("div");
     settingsElement.innerHTML = v["settings"];
     settingsElement.id = k + "-setting";
+    settingsElement.classList.add("widget-setting");
     for (let child of settingsElement.children) {
         if (child.hasAttribute("linkedsetting")) {
             child.addEventListener("input", () => { updateSettingInput(child, k) });
