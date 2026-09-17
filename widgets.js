@@ -70,6 +70,7 @@ function updateSettingInput(element, key, dontReload = false) {
 function deleteWidgetButton(element) {
     let parent = element.parentElement;
     let key = parent.getAttribute("key");
+    addOption(key);
     enabledWidgets.splice(enabledWidgets.indexOf(key), 1);
     localStorage.setItem("enabled", enabledWidgets);
     document.getElementById(key + "-widget").remove();
@@ -149,20 +150,28 @@ function clickWidgetSelect() {
     localStorage.setItem("enabled", enabledWidgets);
 }
 
+function addOption(key) {
+    let option = document.createElement("option");
+    option.innerText = capitalizeFirst(key);
+    option.setAttribute("value", key);
+    addWidgetSelect.appendChild(option);
+}
+
 let storedEnabledWidgets = localStorage.getItem("enabled")
 let enabledWidgets = ((storedEnabledWidgets != null) ? storedEnabledWidgets : "time,text").split(",");
 
+
 for (let [key, v] of Object.entries(widgets)) {
     if (!enabledWidgets.includes(key)) {
-        let option = document.createElement("option");
-        option.innerText = capitalizeFirst(key);
-        option.setAttribute("value", key);
-        addWidgetSelect.appendChild(option);
+        addOption(key);
         continue
     }
 }
 
 for (let key of enabledWidgets) {
+    if (!key)
+        continue
+
     showWidgetSetting(key);
     showWidget(key);
 }
