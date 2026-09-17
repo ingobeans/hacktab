@@ -54,4 +54,5 @@ iframe {
     height: 547px;
     margin: 0 auto;
     display: block;
+    background-color: var(--menu-bg);
 }
