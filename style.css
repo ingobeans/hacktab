@@ -111,3 +111,13 @@ button:hover {
 .widget-setting:last-child>.arrow-btn-down {
     display: none;
 }
+
+#settings-btn {
+    border: none;
+    background: none;
+}
+
+#settings-btn>img {
+    width: 45px;
+    filter: invert(1);
+}
