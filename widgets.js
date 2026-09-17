@@ -45,6 +45,12 @@ for (let [k, v] of Object.entries(widgets)) {
     for (let child of settingsElement.children) {
         if (child.tagName == "INPUT" && child.hasAttribute("linkedsetting")) {
             child.addEventListener("input", () => { updateSettingInput(child, k) });
+
+            // apply stored value if it exists
+            let storedValue = localStorage.getItem(k + "/" + child.getAttribute("linkedsetting"));
+            if (storedValue) {
+                child.value = storedValue;
+            }
         }
     }
 
