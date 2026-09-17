@@ -9,6 +9,10 @@ function format(str, values, undefinedLookup = (key) => { return `<undefined ${k
     });
 }
 
+function capitalizeFirst(text = "") {
+    return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
 function formatWidget(str, values, widgetKey) {
     return format(str, values, findDefaultSettingValue.bind(null, widgetKey))
 }
@@ -50,7 +54,8 @@ function updateSettingInput(element, key, dontReload = false) {
 
 for (let [k, v] of Object.entries(widgets)) {
     let settingsElement = document.createElement("div");
-    settingsElement.innerHTML = v["settings"];
+    settingsElement.innerHTML = `<h2>${capitalizeFirst(k)}</h2><hr>`;
+    settingsElement.innerHTML += v["settings"];
     settingsElement.id = k + "-setting";
     settingsElement.classList.add("widget-setting");
     for (let child of settingsElement.children) {

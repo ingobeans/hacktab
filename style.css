@@ -80,3 +80,7 @@ iframe {
     padding: 10px;
     margin: 15px 24px;
 }
+
+.widget-setting>h2 {
+    margin: 0;
+}
