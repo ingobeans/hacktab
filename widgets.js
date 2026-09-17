@@ -53,13 +53,32 @@ function updateSettingInput(element, key, dontReload = false) {
         reloadWidget(key);
 }
 
+function deleteWidgetButton(element) {
+    let parent = element.parentElement;
+    let key = parent.getAttribute("key");
+    enabledWidgets.splice(enabledWidgets.indexOf(key), 1);
+    localStorage.setItem("enabled", enabledWidgets);
+    document.getElementById(key + "-widget").remove();
+    document.getElementById(key + "-setting").remove();
+}
+
+let settingTemplate = `
+<h2>{key}</h2>
+<button onclick=deleteWidgetButton(this)>X</button>
+<button direction=up>↑</button>
+<button action=down>↓</button>
+
+<br><hr>
+`;
+
 function showWidgetSetting(key) {
     let v = widgets[key];
 
     let settingsElement = document.createElement("div");
-    settingsElement.innerHTML = `<h2>${capitalizeFirst(key)}</h2><hr>`;
+    settingsElement.innerHTML = format(settingTemplate, { key: capitalizeFirst(key) });
     settingsElement.innerHTML += v["settings"];
     settingsElement.id = key + "-setting";
+    settingsElement.setAttribute("key", key);
     settingsElement.classList.add("widget-setting");
     for (let child of settingsElement.children) {
         if (child.hasAttribute("linkedsetting")) {

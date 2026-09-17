@@ -85,4 +85,9 @@ iframe {
 
 .widget-setting>h2 {
     margin: 0;
+    display: inline;
+}
+
+.widget-setting>button {
+    float: right;
 }
