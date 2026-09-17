@@ -89,7 +89,15 @@ iframe {
 }
 
 .widget-setting>button {
+    background-color: var(--menu-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin-left: 2px;
     float: right;
+}
+
+button:hover {
+    filter: invert(0.2) contrast(1.2);
 }
 
 #add-widget-select-container {
