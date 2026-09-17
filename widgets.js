@@ -6,7 +6,7 @@ let addWidgetSelect = document.getElementById("add-widget-select");
 
 function format(str, values, undefinedLookup = (key) => { return `<undefined ${key}>` }) {
     return str.replace(/{([a-zA-Z]+)}/g, function (match, index) {
-        return (typeof values[index] !== 'undefined' ? values[index] : undefinedLookup(index)).replaceAll("\n", "<br>");
+        return (typeof values[index] !== 'undefined' ? values[index].replaceAll("\n", "<br>") : undefinedLookup(index));
     });
 }
 
