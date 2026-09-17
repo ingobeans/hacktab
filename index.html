@@ -12,9 +12,11 @@
     <div id="sidebar-container" style="display: none;">
         <div id="screen-dim" onclick="closeSettings()"></div>
         <div id="sidebar">
-            <select id="add-widget-select" onchange="clickWidgetSelect();">
-                <option disabled selected="true">Add new Widget</option>
-            </select>
+            <div id="add-widget-select-container">
+                <select id="add-widget-select" onchange="clickWidgetSelect();">
+                    <option disabled selected="true">Add new Widget</option>
+                </select>
+            </div>
             <div id="widget-settings-container"></div>
         </div>
     </div>

@@ -91,3 +91,7 @@ iframe {
 .widget-setting>button {
     float: right;
 }
+
+#add-widget-select-container {
+    padding: 25px;
+}
