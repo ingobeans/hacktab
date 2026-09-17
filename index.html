@@ -9,8 +9,11 @@
 
 <body>
     <script src="script.js" defer></script>
-    <p>New Tab</p>
-    <iframe src=""></iframe>
+    <button id="settings-btn" onclick="openSettings()">Settings</button>
+    <div id="sidebar-container" style="display: none;">
+        <div id="screen-dim" onclick="closeSettings()"></div>
+        <div id="sidebar"></div>
+    </div>
 </body>
 
 </html>
