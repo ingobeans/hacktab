@@ -36,6 +36,7 @@ function reloadWidget(key) {
         return
     }
     element.innerHTML = formatWidget(widgets[key]["html"], getWidgetSettingsFromLocalStorage(key), key);
+    eval(widgets[key]["script"]);
 }
 
 function updateSettingInput(element, key, dontReload = false) {
@@ -70,4 +71,6 @@ for (let [k, v] of Object.entries(widgets)) {
     widgetElement.innerHTML = formatWidget(v["html"], getWidgetSettingsFromLocalStorage(k), k);
     widgetElement.id = k + "-widget";
     widgetsContainer.appendChild(widgetElement);
+
+    eval(v["script"]);
 }
