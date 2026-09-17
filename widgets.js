@@ -8,10 +8,11 @@ function format(str, values, undefinedLookup = (key) => { return `<undefined ${k
     return str.replace(/{([a-zA-Z&]+)}/g, function (match, index) {
         let value = values[index];
         if (index.endsWith("&")) {
-            console.log(index);
             index = index.slice(0, -1);
-            value = values[index].replaceAll("\n", "<br>");
-            console.log(index);
+            value = values[index]
+            if (value) {
+                value = value.replaceAll("\n", "<br>");
+            }
         }
         return (typeof value !== 'undefined' ? value : undefinedLookup(index));
     });
