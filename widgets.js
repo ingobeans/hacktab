@@ -69,6 +69,9 @@ function moveWidgetButton(element) {
 
     let setting = document.getElementById(key + "-setting");
     widgetSettingsContainer.insertBefore(setting, directionUp ? setting.previousSibling : setting.nextSibling.nextSibling);
+
+    let widget = document.getElementById(key + "-widget");
+    widgetsContainer.insertBefore(widget, directionUp ? widget.previousSibling : widget.nextSibling.nextSibling);
 }
 
 let settingTemplate = `
