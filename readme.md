@@ -20,7 +20,9 @@ each widget can have three files in the widgets directory:
 the core of widgets work around a sort of templating i implemented. 
 
 since each widget has some settings relevant to it (defined in the .settings.html file),
-these settings can be read by writing `{key name}` in the html. in runtime this is evaluated based on the current active settings.
+these settings can be read by writing `{keyname}` in the html. in runtime this is evaluated based on the current active settings.
+
+by adding an ampersand after the key name in templating, i.e. `{keyname&}`, newlines will be replaced with `<br>`.
 
 the settings page can also define inputs with the `linkedSetting` attribute. this just means this input's value will be tracked, stored in localStorage, and live synced to the widget.
 

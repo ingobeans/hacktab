@@ -5,8 +5,15 @@ let widgetsContainer = document.getElementById("widgets-container");
 let addWidgetSelect = document.getElementById("add-widget-select");
 
 function format(str, values, undefinedLookup = (key) => { return `<undefined ${key}>` }) {
-    return str.replace(/{([a-zA-Z]+)}/g, function (match, index) {
-        return (typeof values[index] !== 'undefined' ? values[index].replaceAll("\n", "<br>") : undefinedLookup(index));
+    return str.replace(/{([a-zA-Z&]+)}/g, function (match, index) {
+        let value = values[index];
+        if (index.endsWith("&")) {
+            console.log(index);
+            index = index.slice(0, -1);
+            value = values[index].replaceAll("\n", "<br>");
+            console.log(index);
+        }
+        return (typeof value !== 'undefined' ? value : undefinedLookup(index));
     });
 }
 
