@@ -2,6 +2,7 @@
 
 let widgetSettingsContainer = document.getElementById("widget-settings-container");
 let widgetsContainer = document.getElementById("widgets-container");
+let addWidgetSelect = document.getElementById("add-widget-select");
 
 function format(str, values, undefinedLookup = (key) => { return `<undefined ${key}>` }) {
     return str.replace(/{(.+)}/g, function (match, index) {
@@ -52,19 +53,21 @@ function updateSettingInput(element, key, dontReload = false) {
         reloadWidget(key);
 }
 
-for (let [k, v] of Object.entries(widgets)) {
+function showWidgetSetting(key) {
+    let v = widgets[key];
+
     let settingsElement = document.createElement("div");
-    settingsElement.innerHTML = `<h2>${capitalizeFirst(k)}</h2><hr>`;
+    settingsElement.innerHTML = `<h2>${capitalizeFirst(key)}</h2><hr>`;
     settingsElement.innerHTML += v["settings"];
-    settingsElement.id = k + "-setting";
+    settingsElement.id = key + "-setting";
     settingsElement.classList.add("widget-setting");
     for (let child of settingsElement.children) {
         if (child.hasAttribute("linkedsetting")) {
-            child.addEventListener("input", () => { updateSettingInput(child, k) });
-            defaultSettings[k + "/" + child.getAttribute("linkedsetting")] = child.value;
+            child.addEventListener("input", () => { updateSettingInput(child, key) });
+            defaultSettings[key + "/" + child.getAttribute("linkedsetting")] = child.value;
 
             // apply stored value if it exists
-            let storedValue = localStorage.getItem(k + "/" + child.getAttribute("linkedsetting"));
+            let storedValue = localStorage.getItem(key + "/" + child.getAttribute("linkedsetting"));
             if (storedValue) {
                 child.value = storedValue;
             }
@@ -72,11 +75,39 @@ for (let [k, v] of Object.entries(widgets)) {
     }
 
     widgetSettingsContainer.appendChild(settingsElement);
+}
+
+function showWidget(key) {
+    let v = widgets[key];
 
     let widgetElement = document.createElement("div");
-    widgetElement.innerHTML = formatWidget(v["html"], getWidgetSettingsFromLocalStorage(k), k);
-    widgetElement.id = k + "-widget";
+    widgetElement.innerHTML = formatWidget(v["html"], getWidgetSettingsFromLocalStorage(key), key);
+    widgetElement.id = key + "-widget";
     widgetsContainer.appendChild(widgetElement);
 
     eval(v["script"]);
+}
+
+function clickWidgetSelect() {
+    let key = addWidgetSelect.value;
+    addWidgetSelect.value = "Add new Widget";
+    showWidgetSetting(key);
+    showWidget(key);
+
+    let option = addWidgetSelect.querySelector(`[value="${key}"]`);
+    option.remove();
+}
+
+let enabledWidgets = ["text"];
+
+for (let [key, v] of Object.entries(widgets)) {
+    if (!enabledWidgets.includes(key)) {
+        let option = document.createElement("option");
+        option.innerText = capitalizeFirst(key);
+        option.setAttribute("value", key);
+        addWidgetSelect.appendChild(option);
+        continue
+    }
+    showWidgetSetting(key);
+    showWidget(key);
 }

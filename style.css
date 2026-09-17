@@ -17,7 +17,8 @@ label {
     color: #c9c9c9;
 }
 
-input {
+input,
+select {
     color: inherit;
     background-color: var(--menu-bg);
     border: 1px solid var(--border);
@@ -61,6 +62,7 @@ input:focus {
     position: absolute;
     left: 0;
     top: 0;
+    overflow-y: auto;
 }
 
 iframe {
