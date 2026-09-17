@@ -6,6 +6,15 @@ function format(str, values) {
     });
 }
 
+let widgetSettingsContainer = document.getElementById("widget-settings-container");
+
 for (let [k, v] of Object.entries(widgets)) {
-    document.body.innerHTML += format(v["html"], { text: "<br><br>hello world" });
+    let widgetElement = document.createElement("div");
+    widgetElement.innerHTML = format(v["html"], { text: "<br><br>hello world" });;
+
+    let settingsElement = document.createElement("div");
+    settingsElement.innerHTML = v["settings"];
+
+    document.body.appendChild(widgetElement);
+    widgetSettingsContainer.appendChild(settingsElement);
 }
