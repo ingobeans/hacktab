@@ -6,17 +6,38 @@ function format(str, values) {
     });
 }
 
+function getWidgetSettingsFromLocalStorage(key) {
+    let settings = {};
+    for (let [k, v] of Object.entries(localStorage)) {
+        if (k.startsWith(key + "/")) {
+            settings[k.slice(k.indexOf("/") + 1)] = v;
+        }
+    }
+    return settings;
+}
+
+function reloadWidget(key) {
+    let element = document.getElementById(`${key}-widget`);
+    if (!element) {
+        console.error(`Key ${key} doesn't exist`);
+        return
+    }
+    element.innerHTML = format(widgets[key]["html"], getWidgetSettingsFromLocalStorage(key));
+}
+
 function updateSettingInput(element, key) {
     let setting = element.getAttribute("linkedsetting");
     let value = element.value;
     localStorage.setItem(key + "/" + setting, value);
+    reloadWidget(key);
 }
 
 let widgetSettingsContainer = document.getElementById("widget-settings-container");
 
 for (let [k, v] of Object.entries(widgets)) {
     let widgetElement = document.createElement("div");
-    widgetElement.innerHTML = format(v["html"], { text: "<br><br>hello world" });;
+    widgetElement.innerHTML = format(v["html"], getWidgetSettingsFromLocalStorage(k));
+    widgetElement.id = k + "-widget";
 
     let settingsElement = document.createElement("div");
     settingsElement.innerHTML = v["settings"];
