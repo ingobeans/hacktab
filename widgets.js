@@ -96,9 +96,12 @@ function clickWidgetSelect() {
 
     let option = addWidgetSelect.querySelector(`[value="${key}"]`);
     option.remove();
+    enabledWidgets.push(key);
+    localStorage.setItem("enabled", enabledWidgets);
 }
 
-let enabledWidgets = ["text"];
+let storedEnabledWidgets = localStorage.getItem("enabled")
+let enabledWidgets = ((storedEnabledWidgets != null) ? storedEnabledWidgets : "time,text").split(",");
 
 for (let [key, v] of Object.entries(widgets)) {
     if (!enabledWidgets.includes(key)) {
@@ -108,6 +111,9 @@ for (let [key, v] of Object.entries(widgets)) {
         addWidgetSelect.appendChild(option);
         continue
     }
+}
+
+for (let key of enabledWidgets) {
     showWidgetSetting(key);
     showWidget(key);
 }
