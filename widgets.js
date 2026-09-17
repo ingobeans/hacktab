@@ -6,6 +6,12 @@ function format(str, values) {
     });
 }
 
+function updateSettingInput(element, key) {
+    let setting = element.getAttribute("linkedsetting");
+    let value = element.value;
+    localStorage.setItem(key + "/" + setting, value);
+}
+
 let widgetSettingsContainer = document.getElementById("widget-settings-container");
 
 for (let [k, v] of Object.entries(widgets)) {
@@ -14,6 +20,12 @@ for (let [k, v] of Object.entries(widgets)) {
 
     let settingsElement = document.createElement("div");
     settingsElement.innerHTML = v["settings"];
+    settingsElement.id = k + "-setting";
+    for (let child of settingsElement.children) {
+        if (child.tagName == "INPUT" && child.hasAttribute("linkedsetting")) {
+            child.addEventListener("input", () => { updateSettingInput(child, k) });
+        }
+    }
 
     document.body.appendChild(widgetElement);
     widgetSettingsContainer.appendChild(settingsElement);
