@@ -44,7 +44,7 @@ then you'll just need to run `node dev/compile-widgets.js` whenever you update a
 
 more widgets will be implemented later ! (feel free to PR)
 
-planned: hackatime daily/weekly targets, weather, arbitrary html
+planned: hackatime daily/weekly targets, weather
 
 ## other features
 
