@@ -2,7 +2,6 @@ let timeCounter = document.getElementById("time-counter");
 let showSeconds = timeCounter.getAttribute("showseconds") == "true";
 
 function updateTimeCounter() {
-    console.log(showSeconds);
     if (!timeCounter.isConnected) {
         return;
     }

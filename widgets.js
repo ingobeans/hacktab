@@ -59,7 +59,6 @@ function reloadWidget(key) {
 }
 
 function updateSettingInput(element, key, dontReload = false) {
-    console.log("updateSettingInput");
     let setting = element.getAttribute("linkedsetting");
     let value = element.value;
     if (element.getAttribute("type") == "checkbox") {
