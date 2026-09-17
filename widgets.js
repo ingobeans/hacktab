@@ -25,11 +25,13 @@ function reloadWidget(key) {
     element.innerHTML = format(widgets[key]["html"], getWidgetSettingsFromLocalStorage(key));
 }
 
-function updateSettingInput(element, key) {
+function updateSettingInput(element, key, dontReload = false) {
     let setting = element.getAttribute("linkedsetting");
     let value = element.value;
     localStorage.setItem(key + "/" + setting, value);
-    reloadWidget(key);
+
+    if (!dontReload)
+        reloadWidget(key);
 }
 
 let widgetSettingsContainer = document.getElementById("widget-settings-container");
@@ -43,7 +45,7 @@ for (let [k, v] of Object.entries(widgets)) {
     settingsElement.innerHTML = v["settings"];
     settingsElement.id = k + "-setting";
     for (let child of settingsElement.children) {
-        if (child.tagName == "INPUT" && child.hasAttribute("linkedsetting")) {
+        if (child.hasAttribute("linkedsetting")) {
             child.addEventListener("input", () => { updateSettingInput(child, k) });
 
             // apply stored value if it exists
