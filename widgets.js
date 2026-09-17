@@ -95,8 +95,8 @@ function moveWidgetButton(element) {
 let settingTemplate = `
 <h2>{key}</h2>
 <button onclick=deleteWidgetButton(this)>X</button>
-<button onclick=moveWidgetButton(this) class="arrow-btn-up" direction=up>↑</button>
 <button onclick=moveWidgetButton(this) class="arrow-btn-down" direction=down>↓</button>
+<button onclick=moveWidgetButton(this) class="arrow-btn-up" direction=up>↑</button>
 
 <br><hr>
 `;
