@@ -20,11 +20,11 @@ each widget can have three files in the widgets directory:
 the core of widgets work around a sort of templating i implemented. 
 
 since each widget has some settings relevant to it (defined in the .settings.html file),
-these settings can be read by writing `{key name here}`. in runtime this is evaluated based on the current active settings.
+these settings can be read by writing `{key name}` in the html. in runtime this is evaluated based on the current active settings.
 
 the settings page can also define inputs with the `linkedSetting` attribute. this just means this input's value will be tracked, stored in localStorage, and live synced to the widget.
 
-to help understand this system, check out `widgets/text.html` and its corresponding `widgets/text.settings.html` for an example
+to help understand this system, check out `widgets/iframe.html` and its corresponding `widgets/iframe.settings.html` for a basic example.
 
 ### building yourself
 
@@ -40,6 +40,10 @@ then you'll just need to run `node dev/compile-widgets.js` whenever you update a
 * iframe - embed another html page, configurable url
 * note - a field of text that can be edited, configurable size
 
+more widgets will be implemented later ! (feel free to PR)
+
+planned: hackatime daily/weekly targets, weather, arbitrary html
+
 ## other features
 
 widgets can be configured from the settings page (button in top left corner).
@@ -51,4 +55,4 @@ here you can add, delete, and re-order widgets
 
 ---
 
-<sup>no AI</sup>
+<sup>no AI • zero dependencies</sup>
