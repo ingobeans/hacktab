@@ -6,6 +6,12 @@ hacktab is a custom new-tab thats made to be very customizable! heavily influenc
 
 ^ this screenshot shows a configuration where i've added a clock widget, some text, and embedded my school schedule (blurred in the screenshot for privacy)
 
+## usage
+
+currently hosted with github pages. most browsers will let you set your newtab page to an arbitrary url (alternatively check for thirdparty extensions that do this if not built-in).
+
+will try to bundle as firefox and chrome extensions later so they can be installed natively and locally.
+
 ## project structure
 
 the project is designed to be very modular. each widget is defined as a unique file under `widgets/`, and are compiled to a single JS file which is loaded on the browser.
