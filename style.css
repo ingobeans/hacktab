@@ -95,3 +95,11 @@ iframe {
 #add-widget-select-container {
     padding: 25px;
 }
+
+.widget-setting:first-child>.arrow-btn-up {
+    display: none;
+}
+
+.widget-setting:last-child>.arrow-btn-down {
+    display: none;
+}
