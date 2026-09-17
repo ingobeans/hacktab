@@ -1,6 +1,6 @@
 # hacktab
 
-hacktab is a custom new-tab thats made to be very customizable!
+hacktab is a custom new-tab thats made to be very customizable! heavily influenced by tabliss
 
 ![screenshot](https://cdn.hackclub.com/01a0b17a-7d20-7eb1-a179-cba0ad9c5938/paste-1789683989038.png)
 
